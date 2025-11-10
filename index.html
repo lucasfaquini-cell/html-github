@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Letreiro Motivacional</title>
+
+<style>
+  /* ----- Estilo da página ----- */
+  body {
+    background: linear-gradient(135deg, #4d2424, #702929, #cc1111);
+    display: flex;
+    flex-direction: column; /* Permite empilhar elementos (título, letreiro, rodapé) */
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: "Poppins", Arial, sans-serif;
+  }
+
+  /* ----- Cabeçalho ----- */
+  h1 {
+    color: #860606;
+    text-shadow: 2px 2px 5px rgba(134, 6, 6, 0.3);
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    letter-spacing: 1px;
+  }
+
+  /* ----- Área do letreiro ----- */
+  .container {
+    width: 70%;
+    height: 100px;
+    overflow: hidden;
+    border: 3px solid #d13f3f;
+    border-radius: 15px;
+    background-color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 6px 15px rgba(134, 6, 6, 0.2);
+  }
+
+  /* ----- Texto do letreiro ----- */
+  .texto {
+    position: absolute;
+    white-space: nowrap;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #fa2525;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  /* ----- Texto abaixo do letreiro ----- */
+  p {
+    margin-top: 40px;
+    font-size: 1.1em;
+    color: #333;
+    text-align: center;
+    width: 60%;
+    line-height: 1.6;
+  }
+
+  /* ----- Rodapé ----- */
+  footer {
+    position: absolute;
+    bottom: 15px;
+    font-size: 0.9em;
+    color: #666;
+  }
+</style>
+</head>
+<body>
+
+  <h1></h1>
+
+  <div class="container">
+    <div class="texto" id="letreiro">Olhos sempre abertos 土</div>
+  </div>
+
+  <p>
+    
+  </p>
+
+  <footer></footer>
+
+  <script>
+    const texto = document.getElementById("letreiro");
+    const container = document.querySelector(".container");
+
+    let posicao = 0;           // posição inicial (à esquerda)
+    let direcao = 1;           // 1 = direita, -1 = esquerda
+    const velocidade = 3;      // controle da velocidade (px por frame)
+
+    function animarLetreiro() {
+      const larguraTexto = texto.offsetWidth;
+      const larguraContainer = container.offsetWidth;
+
+      // Atualiza posição do texto
+      posicao += direcao * velocidade;
+      texto.style.left = posicao + "px";
+
+      // Verifica limites para inverter direção
+      if (posicao + larguraTexto >= larguraContainer) {
+        direcao = -1;  // volta para a esquerda
+      } else if (posicao <= 0) {
+        direcao = 1;   // vai para a direita
+      }
+
+      requestAnimationFrame(animarLetreiro);
+    }
+
+    // Inicia animação
+    animarLetreiro();
+  </script>
+
+</body>
+</html>
